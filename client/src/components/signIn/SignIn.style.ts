@@ -8,7 +8,7 @@ export const FormWrapper = styled.div`
   justify-content: center;
 
   form {
-    width: 100%;
+    width: 30%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -19,7 +19,6 @@ export const FormWrapper = styled.div`
     h2 {
       font-size: 2rem;
       font-family: "Kanit", sans-serif;
-
       font-weight: 600;
       letter-spacing: 1px;
       color: #cf0023;
@@ -28,8 +27,18 @@ export const FormWrapper = styled.div`
       -webkit-text-fill-color: transparent;
     }
 
+    h3 {
+      color: red;
+      font-weight: 400;
+      font-size: 14px;
+    }
+
+    p {
+      align-self: flex-start;
+    }
+
     div {
-      width: 30%;
+      width: 100%;
     }
   }
 `;

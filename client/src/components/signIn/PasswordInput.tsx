@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { InputGroup, Input, Button, InputRightElement } from "@chakra-ui/react";
 
-const PasswordInput = () => {
+import { IProps } from "./Types";
+
+const PasswordInput = ({ registerInp, errors }: IProps) => {
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
 
@@ -12,6 +14,10 @@ const PasswordInput = () => {
         pr="4.5rem"
         type={show ? "text" : "password"}
         placeholder="Enter password"
+        {...registerInp}
+        style={{
+          border: errors ? "1px solid red" : "1px solid black",
+        }}
       />
       <InputRightElement style={{ width: "20%" }}>
         <Button h="2.2rem" size="lg" onClick={handleClick}>

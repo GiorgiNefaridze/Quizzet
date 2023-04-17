@@ -13,7 +13,7 @@ const App = () => {
       <GlobalStyle />
       <Nav />
       <Routes>
-        <Route path="/" element={<SignIn />} />
+        <Route path="/signin" element={<SignIn />} />
         <Route path="/register" element={<Register />} />
       </Routes>
     </ChakraProvider>
