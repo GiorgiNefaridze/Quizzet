@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const SignInWrapper = styled.div`
+export const FormWrapper = styled.div`
   width: 100%;
   height: calc(100vh - 10vh);
   display: flex;
@@ -18,9 +18,14 @@ export const SignInWrapper = styled.div`
 
     h2 {
       font-size: 2rem;
-      font-family: "Roboto", sans-serif;
+      font-family: "Kanit", sans-serif;
+
       font-weight: 600;
       letter-spacing: 1px;
+      color: #cf0023;
+      background: linear-gradient(to right, #cf0023 0%, #cf7079 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     div {

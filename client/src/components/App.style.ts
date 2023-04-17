@@ -6,4 +6,9 @@ export const GlobalStyle = createGlobalStyle`
        padding:0;
        box-sizing: border-box;
    }
+
+   *::selection{
+    background-color:#CF0075;
+    color:white!important;
+   }
 `;

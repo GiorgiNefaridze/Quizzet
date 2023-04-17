@@ -3,11 +3,11 @@ import { Input, Button, Stack } from "@chakra-ui/react";
 
 import PasswordInput from "./PasswordInput";
 
-import { SignInWrapper } from "./SignIn.style";
+import { FormWrapper } from "./SignIn.style";
 
 const SignIn: FC = () => {
   return (
-    <SignInWrapper>
+    <FormWrapper>
       <form>
         <h2>Sign In🔥</h2>
         <Stack spacing={5}>
@@ -15,12 +15,17 @@ const SignIn: FC = () => {
           <PasswordInput />
         </Stack>
         <Stack direction="row" spacing={4}>
-          <Button isLoading={false} loadingText="Submitting" variant="outline">
+          <Button
+            isLoading={false}
+            loadingText="Submitting"
+            style={{ gap: "0 10px" }}
+            variant="outline"
+          >
             Sign in
           </Button>
         </Stack>
       </form>
-    </SignInWrapper>
+    </FormWrapper>
   );
 };
 
