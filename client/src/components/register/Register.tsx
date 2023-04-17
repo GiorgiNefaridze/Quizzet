@@ -5,6 +5,7 @@ import { Input, Button, Stack, Text, Link } from "@chakra-ui/react";
 import { REQUIRED_VALIDATION } from "../../CONSTANTS";
 import { IForm } from "./Types";
 
+import RegisterSvg from "../../../public/register.svg";
 import { FormWrapper } from "../signIn/SignIn.style";
 
 const Register: FC = () => {
@@ -21,6 +22,7 @@ const Register: FC = () => {
 
   return (
     <FormWrapper>
+      <img src={RegisterSvg} alt="register" title="register" />
       <form onSubmit={handleSubmit(submitForm)}>
         <h2>Register🚀</h2>
         <Stack spacing={5}>

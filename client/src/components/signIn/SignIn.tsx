@@ -6,6 +6,7 @@ import { REQUIRED_VALIDATION } from "../../CONSTANTS";
 import { IForm } from "./Types";
 import PasswordInput from "./PasswordInput";
 
+import SignInSvg from "../../../public/sign_in.svg";
 import { FormWrapper } from "./SignIn.style";
 
 const SignIn: FC = () => {
@@ -22,6 +23,7 @@ const SignIn: FC = () => {
 
   return (
     <FormWrapper>
+      <img src={SignInSvg} alt="sign in" title="sign in" />
       <form onSubmit={handleSubmit(submitForm)}>
         <h2>Sign In🔥</h2>
         <Stack spacing={5}>
