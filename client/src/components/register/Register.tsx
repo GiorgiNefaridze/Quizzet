@@ -1,7 +1,9 @@
 import { FC } from "react";
 import { useForm } from "react-hook-form";
 import { Input, Button, Stack, Text, Link } from "@chakra-ui/react";
+import toast, { Toaster } from "react-hot-toast";
 
+import { useRegister } from "../../hooks/useRegister";
 import { REQUIRED_VALIDATION } from "../../CONSTANTS";
 import { IForm } from "./Types";
 
@@ -9,6 +11,8 @@ import RegisterSvg from "../../../public/register.svg";
 import { FormWrapper } from "../signIn/SignIn.style";
 
 const Register: FC = () => {
+  const { registerFn } = useRegister();
+
   const {
     register,
     handleSubmit,
@@ -16,8 +20,12 @@ const Register: FC = () => {
     reset,
   } = useForm<IForm>();
 
-  const submitForm = (data: IForm) => {
-    console.log("registered", data);
+  const submitForm = async (data: IForm) => {
+    toast.promise(registerFn(data), {
+      loading: "Loading...",
+      success: (data) => data?.data?.response,
+      error: (data) => data?.response?.data?.error,
+    });
   };
 
   return (
@@ -44,6 +52,7 @@ const Register: FC = () => {
           {errors?.email?.message && <h3>{errors?.email?.message}</h3>}
           <Input
             placeholder="Enter password"
+            type="password"
             size="lg"
             {...register("password", {
               required: { value: true, message: REQUIRED_VALIDATION },
@@ -69,6 +78,7 @@ const Register: FC = () => {
           </Button>
         </Stack>
       </form>
+      <Toaster />
     </FormWrapper>
   );
 };
