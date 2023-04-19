@@ -12,13 +12,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.RegisterController = void 0;
 const DbConnection_1 = require("../db/DbConnection");
 const RegisterController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a;
     try {
         const { name, email, password } = req.body;
         if (!(name === null || name === void 0 ? void 0 : name.length) || !(email === null || email === void 0 ? void 0 : email.length) || !(password === null || password === void 0 ? void 0 : password.length)) {
             throw new Error("All fields are required");
         }
         const checkUser = yield DbConnection_1.pool.query(`SELECT email FROM ${process.env.USER_TABLE} WHERE email = $1`, [email]);
-        console.log(checkUser);
+        if (((_a = checkUser.rows) === null || _a === void 0 ? void 0 : _a.length) > 0) {
+            throw new Error("User already exists");
+        }
     }
     catch (error) {
         res.status(500).json({ error: error === null || error === void 0 ? void 0 : error.message });

@@ -14,7 +14,12 @@ export const RegisterController: IControllerProps = async (req, res) => {
       [email]
     );
 
-    console.log(checkUser);
+    if (checkUser.rows?.length > 0) {
+      throw new Error("User already exists");
+    }
+
+    
+
   } catch (error) {
     res.status(500).json({ error: error?.message });
   }
