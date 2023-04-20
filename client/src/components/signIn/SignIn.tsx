@@ -1,24 +1,41 @@
 import { FC } from "react";
 import { useForm } from "react-hook-form";
 import { Input, Button, Stack, Link, Text } from "@chakra-ui/react";
+import toast, { Toaster } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
+import PasswordInput from "./PasswordInput";
 import { REQUIRED_VALIDATION } from "../../CONSTANTS";
 import { IForm } from "./Types";
-import PasswordInput from "./PasswordInput";
+import { useSignIn } from "../../hooks/useSignIn";
 
 import SignInSvg from "../../../public/sign_in.svg";
 import { FormWrapper } from "./SignIn.style";
 
 const SignIn: FC = () => {
+  const { signIn } = useSignIn();
+  const navigate = useNavigate();
+
   const {
     handleSubmit,
     formState: { errors },
     register,
-    reset,
   } = useForm<IForm>();
 
   const submitForm = (data: IForm) => {
-    console.log("sign in", data);
+    toast.promise(signIn(data), {
+      loading: "Saving...",
+      success: "Successfully logged in🫡",
+      error: ({
+        response: {
+          data: { error },
+        },
+      }) => error,
+    });
+  };
+
+  const handleClick = () => {
+    navigate("/register");
   };
 
   return (
@@ -52,7 +69,7 @@ const SignIn: FC = () => {
         </Stack>
         <Text>
           Don't have an account?
-          <Link color="red" href="/register">
+          <Link color="red" onClick={handleClick}>
             Register here...
           </Link>
         </Text>
@@ -68,6 +85,7 @@ const SignIn: FC = () => {
           </Button>
         </Stack>
       </form>
+      <Toaster />
     </FormWrapper>
   );
 };

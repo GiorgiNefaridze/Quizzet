@@ -2,6 +2,7 @@ import { FC } from "react";
 import { useForm } from "react-hook-form";
 import { Input, Button, Stack, Text, Link } from "@chakra-ui/react";
 import toast, { Toaster } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 import { useRegister } from "../../hooks/useRegister";
 import { REQUIRED_VALIDATION } from "../../CONSTANTS";
@@ -12,6 +13,7 @@ import { FormWrapper } from "../signIn/SignIn.style";
 
 const Register: FC = () => {
   const { registerFn } = useRegister();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -23,9 +25,15 @@ const Register: FC = () => {
   const submitForm = async (data: IForm) => {
     toast.promise(registerFn(data), {
       loading: "Loading...",
-      success: (data) => data?.data?.response,
-      error: (data) => data?.response?.data?.error,
+      success: ({ data: { response } }) => response,
+      error: ({ response: { data } }) => data?.error,
     });
+
+    reset({ email: "", password: "", name: "" });
+  };
+
+  const handleClick = () => {
+    navigate("/signin");
   };
 
   return (
@@ -62,7 +70,7 @@ const Register: FC = () => {
         </Stack>
         <Text>
           Already have an account?
-          <Link color="red" href="/signin">
+          <Link color="red" onClick={handleClick}>
             Sign in...
           </Link>
         </Text>
