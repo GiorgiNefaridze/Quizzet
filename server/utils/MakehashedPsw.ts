@@ -1,6 +1,6 @@
 import { genSalt, hash } from "bcrypt";
 
-interface IProps {
+export interface IProps {
   (plailPsw: string): Promise<string>;
 }
 
