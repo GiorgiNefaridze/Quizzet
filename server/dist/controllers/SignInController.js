@@ -20,7 +20,7 @@ const SignInController = (req, res) => __awaiter(void 0, void 0, void 0, functio
         if (!(email === null || email === void 0 ? void 0 : email.length) || !(password === null || password === void 0 ? void 0 : password.length)) {
             throw new Error("All fields are required");
         }
-        const user = yield DbConnection_1.pool.query(`SELECT password FROM ${process.env.USER_TABLE} WHERE email = $1`, [email]);
+        const user = yield DbConnection_1.pool.query(`SELECT * FROM ${process.env.USER_TABLE} WHERE email = $1`, [email]);
         const plainPsw = yield (0, MakePlainPsw_1.makePlainPsw)(password, (_a = user.rows) === null || _a === void 0 ? void 0 : _a[0].password);
         if (((_b = user.rows) === null || _b === void 0 ? void 0 : _b.length) < 1 || !plainPsw) {
             throw new Error("Wrong credentials");

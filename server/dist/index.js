@@ -32,6 +32,7 @@ const cors_1 = __importDefault(require("cors"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const RegisterRoute_1 = __importDefault(require("./routes/RegisterRoute"));
 const SignInRoute_1 = __importDefault(require("./routes/SignInRoute"));
+const GetUserRoute_1 = __importDefault(require("./routes/GetUserRoute"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const port = (_a = process.env.PORT) !== null && _a !== void 0 ? _a : 3000;
@@ -39,6 +40,7 @@ app.use((0, cors_1.default)());
 app.use((0, express_1.json)());
 app.use("/api/auth/", SignInRoute_1.default);
 app.use("/api/auth/", RegisterRoute_1.default);
+app.use("/api/user/", GetUserRoute_1.default);
 app.listen(port, () => {
     console.log(`Server is running at ${port} 🚀`);
 });

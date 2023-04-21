@@ -12,7 +12,7 @@ export const SignInController: IControllerProps = async (req, res) => {
     }
 
     const user = await pool.query(
-      `SELECT password FROM ${process.env.USER_TABLE} WHERE email = $1`,
+      `SELECT * FROM ${process.env.USER_TABLE} WHERE email = $1`,
       [email]
     );
 
