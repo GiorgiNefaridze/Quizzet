@@ -22,7 +22,7 @@ const SignIn: FC = () => {
     register,
   } = useForm<IForm>();
 
-  const submitForm = (data: IForm) => {
+  const submitForm = async (data: IForm) => {
     toast.promise(signIn(data), {
       loading: "Saving...",
       success: "Successfully logged in🫡",
@@ -32,6 +32,14 @@ const SignIn: FC = () => {
         },
       }) => error,
     });
+
+    const {
+      data: { response },
+    } = await signIn(data);
+
+    if (response?.length > 1) {
+      navigate("/");
+    }
   };
 
   const handleClick = () => {
