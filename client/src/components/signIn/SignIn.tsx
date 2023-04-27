@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import PasswordInput from "./PasswordInput";
 import { REQUIRED_VALIDATION } from "../../CONSTANTS";
 import { IForm } from "./Types";
+import { AuthContext } from "../../context/AuthContext";
 import { useSignIn } from "../../hooks/useSignIn";
 
 import SignInSvg from "../../../public/sign_in.svg";
@@ -14,6 +15,7 @@ import { FormWrapper } from "./SignIn.style";
 
 const SignIn: FC = () => {
   const { signIn } = useSignIn();
+  const { setIsAuth } = AuthContext();
   const navigate = useNavigate();
 
   const {
@@ -38,6 +40,7 @@ const SignIn: FC = () => {
     } = await signIn(data);
 
     if (response?.length > 1) {
+      setIsAuth({ status: true, name: response?.name, email: response?.email });
       navigate("/");
     }
   };

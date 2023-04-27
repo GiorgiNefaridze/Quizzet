@@ -9,6 +9,6 @@ export const GlobalStyle = createGlobalStyle`
 
    *::selection{
     background-color:#CF0075;
-    color:white!important;
+    color:white;
    }
 `;

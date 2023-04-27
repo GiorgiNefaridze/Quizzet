@@ -1,7 +1,7 @@
 import { useState, createContext, useContext, useEffect } from "react";
 
 import { useGetUserData } from "../hooks/useGetUserData";
-import { IContext, IContextProvider } from "./Types";
+import { IContext, IContextProvider, IIsAuth } from "./Types";
 
 export const auth = createContext<IContext>({} as IContext);
 
@@ -10,13 +10,26 @@ export const AuthContext = () => {
 };
 
 export const AuthContextProvider = ({ children }: IContextProvider) => {
-  const [isAuth, setIsAuth] = useState<boolean>(false);
+  const [isAuth, setIsAuth] = useState<IIsAuth>({
+    status: false,
+    name: "",
+    email: "",
+  });
 
   const { getUserData } = useGetUserData();
 
   useEffect(() => {
     (async () => {
-      const user = await getUserData();
+      try {
+        const user = await getUserData();
+
+        if (Object.keys(user).length > 1) {
+          setIsAuth({ status: true, name: user?.name, email: user?.email });
+        } else {
+        }
+      } catch (error) {
+        setIsAuth({ status: false, name: "", email: "" });
+      }
     })();
   }, []);
 
