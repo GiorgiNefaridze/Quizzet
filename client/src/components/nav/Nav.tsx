@@ -10,7 +10,6 @@ import {
 
 import Quizzet from "../../../public/quizzet.png";
 import { AuthContext } from "../../context/AuthContext";
-import { handleSignOut } from "../../utils/SignOut";
 
 import { NavWrapper } from "./Nav.style";
 
@@ -61,7 +60,8 @@ const NavButton = ({ content }: IProps) => {
     if (content === "Sign In") {
       navigate("/signin");
     } else if (content === "Sign out") {
-      handleSignOut();
+      setIsAuth({ status: false, email: "", name: "" });
+      localStorage.removeItem("token");
     } else {
       navigate("/register");
     }

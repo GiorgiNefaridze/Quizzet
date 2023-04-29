@@ -21,8 +21,14 @@ const App = () => {
           path="/"
           element={isAuth?.status ? <Home /> : <Navigate to="/signin" />}
         />
-        <Route path="/signin" element={<SignIn />} />
-        <Route path="/register" element={<Register />} />
+        <Route
+          path="/signin"
+          element={!isAuth?.status ? <SignIn /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/register"
+          element={!isAuth?.status ? <Register /> : <Navigate to="/" />}
+        />
       </Routes>
     </ChakraProvider>
   );

@@ -1,11 +1,14 @@
 import styled from "styled-components";
 
+import { BG_COLOR } from "../../CONSTANTS";
+
 export const FormWrapper = styled.div`
   width: 100%;
   height: calc(100vh - 10vh);
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: ${BG_COLOR};
   gap: 0 5%;
 
   img {
