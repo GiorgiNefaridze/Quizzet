@@ -16,7 +16,9 @@ export const SignInController: IControllerProps = async (req, res) => {
       [email]
     );
 
-    const plainPsw = await makePlainPsw(password, user.rows?.[0].password);
+    const userPsw = user.rows?.[0];
+
+    const plainPsw = await makePlainPsw(password, userPsw?.password ?? "");
 
     if (user.rows?.length < 1 || !plainPsw) {
       throw new Error("Wrong credentials");

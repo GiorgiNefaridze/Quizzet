@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.makePlainPsw = void 0;
 const bcrypt_1 = require("bcrypt");
 const makePlainPsw = (plainPsw, hashPsw) => __awaiter(void 0, void 0, void 0, function* () {
-    if (!hashPsw) {
+    if (!(hashPsw === null || hashPsw === void 0 ? void 0 : hashPsw.length)) {
         return false;
     }
     const plain = yield (0, bcrypt_1.compare)(plainPsw, hashPsw);

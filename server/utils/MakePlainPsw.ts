@@ -5,7 +5,7 @@ interface IProps {
 }
 
 export const makePlainPsw: IProps = async (plainPsw, hashPsw) => {
-  if (!hashPsw) {
+  if (!hashPsw?.length) {
     return false;
   }
 
