@@ -7,8 +7,9 @@ export const HomeWrapper = styled.div`
   height: 90vh;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   background-color: ${BG_COLOR};
+  padding-inline: 5em;
 
   img {
     width: 45%;

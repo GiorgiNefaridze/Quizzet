@@ -5,6 +5,7 @@ import Home from "./components/home/Home";
 import Nav from "./components/nav/Nav";
 import SignIn from "./components/signIn/SignIn";
 import Register from "./components/register/Register";
+import Quiz from "./components/quiz/Quiz";
 import { AuthContext } from "./context/AuthContext";
 
 import { GlobalStyle } from "./App.style";
@@ -21,6 +22,7 @@ const App = () => {
           path="/"
           element={isAuth?.status ? <Home /> : <Navigate to="/signin" />}
         />
+        <Route path="/quiz" element={!isAuth?.status ? <SignIn /> : <Quiz />} />
         <Route
           path="/signin"
           element={!isAuth?.status ? <SignIn /> : <Navigate to="/" />}
