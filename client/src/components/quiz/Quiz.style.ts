@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-export const QuizWrapper = styled.div`
+interface IProps {
+  isError: boolean;
+}
+
+export const QuizWrapper = styled.div<IProps | HTMLElement>`
   width: 100%;
   height: 90vh;
   display: flex;
@@ -19,6 +23,7 @@ export const QuizWrapper = styled.div`
     flex-direction: column;
     padding: 4.5rem;
     gap: 30px 0;
+    opacity: ${({ isError }) => (isError ? 0.5 : 1)};
 
     input {
       width: 100%;
@@ -35,6 +40,5 @@ export const Buttons = styled.div`
 
   button {
     padding: 15px 20px;
-    
   }
 `;

@@ -1,35 +1,44 @@
-import { FC, useEffect, useState, useRef } from "react";
+import { FC, useEffect, useState } from "react";
 import { Button, Progress, Stack } from "@chakra-ui/react";
-import axios from "axios";
+
+import QuizPopUp from "./QuizPopUp";
+import { useGetQuiz } from "../../hooks/useGetQuiz";
 
 import { QuizWrapper, Buttons } from "./Quiz.style";
 
 const Quiz: FC = () => {
   const [question, setQuestion] = useState({});
   const [count, setCount] = useState(1);
+  const [error, setError] = useState<boolean>(false);
 
-  const testRef = useRef(true);
+  const { getQuiz } = useGetQuiz();
 
   const fetcData = async () => {
-    const { data } = await axios.get("https://the-trivia-api.com/v2/questions");
+    const data = await getQuiz();
 
     const question = data[Math.floor(Math.random() * data.length)];
+
+    console.log(question?.difficulty);
 
     setQuestion({
       question: question?.question.text,
       answers: [...question?.incorrectAnswers, question.correctAnswer],
       correctAnswer: question.correctAnswer,
+      difficulty: question?.difficulty,
     });
   };
 
   useEffect(() => {
-    (async () => {
-      await fetcData();
-    })();
+    if (count <= 10) {
+      (async () => {
+        await fetcData();
+      })();
+    }
   }, [count]);
 
   const handleClick = (answer: string) => {
-    if (answer !== question?.correctAnswer) {
+    if (count == 10 || answer !== question?.correctAnswer) {
+      setError(true);
       return;
     }
 
@@ -37,7 +46,8 @@ const Quiz: FC = () => {
   };
 
   return (
-    <QuizWrapper>
+    <QuizWrapper isError={error}>
+      {error && <QuizPopUp />}
       <main>
         <Stack width="100%">
           <Progress
@@ -51,14 +61,14 @@ const Quiz: FC = () => {
         <p>Question {count} / 10</p>
         <h1>{question?.question}</h1>
         <Buttons>
-          {question?.answers?.map?.((el, idx) => (
+          {question?.answers?.map?.((content: string, idx: number) => (
             <Button
               key={idx}
               colorScheme="red"
               variant="outline"
-              onClick={() => handleClick(el)}
+              onClick={() => handleClick(content)}
             >
-              {el}
+              {content}
             </Button>
           ))}
         </Buttons>
