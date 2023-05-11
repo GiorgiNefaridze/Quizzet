@@ -11,7 +11,7 @@ const Rate = ({ difficulty }: IProps) => {
   }, [difficulty]);
 
   return (
-    <div style={{ display: "flex", cursor: "pointer" }}>
+    <div style={{ display: "flex", cursor: "pointer", gap: "0px 1px" }}>
       {stars?.map((_, idx) => {
         return <AiFillStar key={idx} color="orange" />;
       })}

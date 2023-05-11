@@ -20,7 +20,7 @@ export const QuizWrapper = styled.div<IProps | HTMLElement>`
     align-items: flex-start;
     justify-content: space-between;
     flex-direction: column;
-    padding: 4.5rem;
+    padding: 4rem 3rem 2rem;
     gap: 30px 0;
     opacity: ${({ isError }) => (isError ? 0.5 : 1)};
     position: relative;
@@ -28,6 +28,7 @@ export const QuizWrapper = styled.div<IProps | HTMLElement>`
     input {
       width: 100%;
     }
+
     li {
       position: absolute;
       right: 5%;
@@ -40,8 +41,9 @@ export const Buttons = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  align-items: ceneter;
+  flex-direction: column;
+  gap: 1rem 0;
   flex-wrap: wrap;
 
   button {

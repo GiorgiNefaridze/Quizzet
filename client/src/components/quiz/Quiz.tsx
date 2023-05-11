@@ -5,6 +5,7 @@ import { RxQuestionMarkCircled } from "react-icons/rx";
 import Rate from "./Rate";
 import QuizPopUp from "./QuizPopUp";
 import { useGetQuiz } from "../../hooks/useGetQuiz";
+import { changeAnswersPosition } from "../../utils/changeAnswersPosition";
 import { DIFFICULTY, GAME_RULES } from "../../CONSTANTS";
 
 import { QuizWrapper, Buttons, Header } from "./Quiz.style";
@@ -13,6 +14,7 @@ const Quiz: FC = () => {
   const [question, setQuestion] = useState({});
   const [count, setCount] = useState(1);
   const [error, setError] = useState<boolean>(false);
+  const [buttons, setButtons] = useState<string[] | []>([]);
 
   const { getQuiz } = useGetQuiz();
 
@@ -27,6 +29,13 @@ const Quiz: FC = () => {
       correctAnswer: question.correctAnswer,
       difficulty: question?.difficulty,
     });
+
+    const mixedPositions = changeAnswersPosition([
+      ...question?.incorrectAnswers,
+      question.correctAnswer,
+    ]);
+
+    setButtons(mixedPositions);
   };
 
   useEffect(() => {
@@ -79,7 +88,7 @@ const Quiz: FC = () => {
         <p>Question {count} / 10</p>
         <h1>{question?.question}</h1>
         <Buttons>
-          {question?.answers?.map?.((content: string, idx: number) => (
+          {buttons?.map((content: string, idx: number) => (
             <Button
               key={idx}
               colorScheme="red"
