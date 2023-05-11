@@ -1,5 +1,12 @@
 import { FC, useEffect, useState } from "react";
-import { Button, Progress, Stack, Tooltip, WrapItem } from "@chakra-ui/react";
+import {
+  Button,
+  Progress,
+  Skeleton,
+  Stack,
+  Tooltip,
+  WrapItem,
+} from "@chakra-ui/react";
 import { RxQuestionMarkCircled } from "react-icons/rx";
 
 import Rate from "./Rate";
@@ -16,7 +23,7 @@ const Quiz: FC = () => {
   const [error, setError] = useState<boolean>(false);
   const [buttons, setButtons] = useState<string[] | []>([]);
 
-  const { getQuiz } = useGetQuiz();
+  const { getQuiz, loading } = useGetQuiz();
 
   const fetcData = async () => {
     const data = await getQuiz();
@@ -59,45 +66,72 @@ const Quiz: FC = () => {
     <QuizWrapper isError={error}>
       {error && <QuizPopUp />}
       <main>
-        <WrapItem>
-          <Tooltip
-            label={GAME_RULES}
-            closeDelay={200}
-            width={170}
-            hasArrow
-            placement="top"
-            bg="red.600"
-          >
-            <div>
-              <RxQuestionMarkCircled size={30} color="red" cursor={"pointer"} />
-            </div>
-          </Tooltip>
-        </WrapItem>
-        <Header>
-          <Stack width="90%">
-            <Progress
-              height="20px"
-              colorScheme="red"
-              size="md"
-              value={count}
-              max={10}
-            />
-          </Stack>
-          <Rate difficulty={DIFFICULTY[question?.difficulty]} />
-        </Header>
-        <p>Question {count} / 10</p>
-        <h1>{question?.question}</h1>
+        {!loading && (
+          <>
+            <WrapItem>
+              <Tooltip
+                label={GAME_RULES}
+                closeDelay={200}
+                width={170}
+                hasArrow
+                placement="top"
+                bg="red.600"
+              >
+                <div>
+                  <RxQuestionMarkCircled
+                    size={30}
+                    color="red"
+                    cursor={"pointer"}
+                  />
+                </div>
+              </Tooltip>
+            </WrapItem>
+            <Header>
+              <Stack width="90%">
+                <Progress
+                  height="20px"
+                  colorScheme="red"
+                  size="md"
+                  value={count}
+                  max={10}
+                />
+              </Stack>
+              <Rate difficulty={DIFFICULTY[question?.difficulty]} />
+            </Header>
+          </>
+        )}
+
+        {!loading && <p>Question {count} / 10</p>}
+        {loading && (
+          <Skeleton style={{ width: "100%" }}>
+            <p>lorem</p>
+          </Skeleton>
+        )}
+        {loading && (
+          <Skeleton style={{ width: "100%" }}>
+            <p>lorem</p>
+          </Skeleton>
+        )}
+        {!loading && <h1>{question?.question}</h1>}
         <Buttons>
-          {buttons?.map((content: string, idx: number) => (
-            <Button
-              key={idx}
-              colorScheme="red"
-              variant="outline"
-              onClick={() => handleClick(content)}
-            >
-              {content}
-            </Button>
-          ))}
+          {loading &&
+            new Array(4).fill(0).map?.((item) => (
+              <Skeleton style={{ width: "100%" }}>
+                <p>lorem</p>
+                <p>lorem</p>
+              </Skeleton>
+            ))}
+          {!loading &&
+            buttons?.map((content: string, idx: number) => (
+              <Button
+                key={idx}
+                colorScheme="red"
+                variant="outline"
+                onClick={() => handleClick(content)}
+              >
+                {content}
+              </Button>
+            ))}
         </Buttons>
       </main>
     </QuizWrapper>
