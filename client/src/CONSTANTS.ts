@@ -7,3 +7,6 @@ export const DIFFICULTY = {
 };
 export const GAME_RULES =
   "⭐ equals 1 point, ⭐⭐ equals 2 point, ⭐⭐⭐ equals 3 point";
+export const LOSE =
+  "Oops Wrong Answer! Would you like to restart and try again? 🫥";
+export const GO_BACK = "Go back 🚀";

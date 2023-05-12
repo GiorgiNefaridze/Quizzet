@@ -1,6 +1,6 @@
 import { FC, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, Skeleton } from "@chakra-ui/react";
+import { Button } from "@chakra-ui/react";
 
 import { IUserData } from "../../hooks/useGetUsersData";
 import { useGetUsersData } from "../../hooks/useGetUsersData";
@@ -34,38 +34,27 @@ const DashBoard: FC = () => {
         <div id="leaderboard">
           <div className="ribbon"></div>
           <table>
-            {loading &&
-              new Array(6).fill(0).map((item) => (
-                <Skeleton
-                  style={{ width: "100%", zIndex: "20px", marginBlock: "10px" }}
-                >
-                  <p>lorem</p>
-                  <p>lorem</p>
-                  <p>lorem</p>
-                </Skeleton>
-              ))}
-            {!loading &&
-              users?.map(({ id, name, score }: IUserData, idx) => {
-                if (idx > 4) {
-                  return;
-                }
-                return (
-                  <tr key={id}>
-                    <td className="number">{idx + 1}</td>
-                    <td className="name">{name}</td>
-                    <td className="points">
-                      {score}
-                      {idx === 0 && (
-                        <img
-                          className="gold-medal"
-                          src="https://github.com/malunaridev/Challenges-iCodeThis/blob/master/4-leaderboard/assets/gold-medal.png?raw=true"
-                          alt="gold medal"
-                        />
-                      )}
-                    </td>
-                  </tr>
-                );
-              })}
+            {users?.map(({ id, name, score }: IUserData, idx) => {
+              if (idx > 4) {
+                return;
+              }
+              return (
+                <tr key={id}>
+                  <td className="number">{idx + 1}</td>
+                  <td className="name">{name}</td>
+                  <td className="points">
+                    {score}
+                    {idx === 0 && (
+                      <img
+                        className="gold-medal"
+                        src="https://github.com/malunaridev/Challenges-iCodeThis/blob/master/4-leaderboard/assets/gold-medal.png?raw=true"
+                        alt="gold medal"
+                      />
+                    )}
+                  </td>
+                </tr>
+              );
+            })}
           </table>
         </div>
       </main>

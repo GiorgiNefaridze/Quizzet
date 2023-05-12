@@ -1,8 +1,8 @@
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Button,
   Modal,
-  ModalBody,
   ModalContent,
   ModalFooter,
   ModalHeader,
@@ -10,8 +10,16 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 
+import { LOSE, GO_BACK } from "../../CONSTANTS";
+
 const QuizPopUp = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/");
+  };
 
   useEffect(() => {
     onOpen();
@@ -27,11 +35,16 @@ const QuizPopUp = () => {
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Create your account</ModalHeader>
-          <ModalBody pb={6}>loremloremloremloremloremlorem</ModalBody>
+          <ModalHeader>{LOSE}</ModalHeader>
           <ModalFooter>
-            <Button colorScheme="red" mr={3} width={100}>
-              Save
+            <Button
+              onClick={handleClick}
+              colorScheme="red"
+              mr={3}
+              width={100}
+              paddingInline={20}
+            >
+              {GO_BACK}
             </Button>
           </ModalFooter>
         </ModalContent>
