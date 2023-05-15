@@ -19,7 +19,7 @@ dotenv_1.default.config();
 const GetUsersController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     try {
-        const users = yield DbConnection_1.pool.query(`SELECT name,isMale,score FROM ${process.env.USER_TABLE} `);
+        const users = yield DbConnection_1.pool.query(`SELECT name,ismale,score,id FROM ${process.env.USER_TABLE} ORDER BY score DESC`);
         if (!((_a = users === null || users === void 0 ? void 0 : users.rows) === null || _a === void 0 ? void 0 : _a.length)) {
             throw new Error("Something went wrong");
         }

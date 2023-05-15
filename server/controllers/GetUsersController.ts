@@ -8,7 +8,7 @@ dotenv.config();
 export const GetUsersController: IControllerProps = async (req, res) => {
   try {
     const users = await pool.query(
-      `SELECT name,isMale,score FROM ${process.env.USER_TABLE} `
+      `SELECT name,ismale,score,id FROM ${process.env.USER_TABLE} ORDER BY score DESC`
     );
 
     if (!users?.rows?.length) {
