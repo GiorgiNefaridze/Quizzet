@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Button } from "@chakra-ui/react";
 
 interface IProps {
   isError: boolean;
@@ -10,6 +11,7 @@ export const QuizWrapper = styled.div<IProps | HTMLElement>`
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 
   main {
     width: 45%;
@@ -56,4 +58,10 @@ export const Header = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+`;
+
+export const GoBack = styled(Button)`
+  position: absolute !important;
+  bottom: 5% !important;
+  left: 2% !important;
 `;

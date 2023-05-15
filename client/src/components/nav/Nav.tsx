@@ -67,7 +67,11 @@ const NavButton = ({ content }: IProps) => {
     }
   };
 
-  return <Button onClick={handleClick}>{content}</Button>;
+  return (
+    <Button colorScheme="red" onClick={handleClick}>
+      {content}
+    </Button>
+  );
 };
 
 export default Nav;

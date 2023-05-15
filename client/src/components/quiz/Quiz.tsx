@@ -7,7 +7,10 @@ import {
   Tooltip,
   WrapItem,
 } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 import { RxQuestionMarkCircled } from "react-icons/rx";
+import { ArrowBackIcon } from "@chakra-ui/icons";
 
 import Rate from "./Rate";
 import QuizPopUp from "./QuizPopUp";
@@ -16,7 +19,7 @@ import { useQuiz } from "../../hooks/useQuiz";
 import { changeAnswersPosition } from "../../utils/changeAnswersPosition";
 import { DIFFICULTY, GAME_RULES } from "../../CONSTANTS";
 
-import { QuizWrapper, Buttons, Header } from "./Quiz.style";
+import { QuizWrapper, Buttons, Header, GoBack } from "./Quiz.style";
 
 const Quiz: FC = () => {
   const [question, setQuestion] = useState({});
@@ -24,6 +27,7 @@ const Quiz: FC = () => {
   const [error, setError] = useState<boolean>(false);
   const [buttons, setButtons] = useState<string[] | []>([]);
 
+  const navigate = useNavigate();
   const { getQuiz, loading } = useGetQuiz();
   const { answeringQuiz } = useQuiz();
 
@@ -61,13 +65,21 @@ const Quiz: FC = () => {
       return;
     }
 
-    await answeringQuiz(DIFFICULTY[question?.difficulty]);
+    toast.promise(answeringQuiz(DIFFICULTY[question?.difficulty]), {
+      loading: "Saving Changes 🤖...",
+      success: (score) => <p>You now have {score} score.Good Job 🫡</p>,
+    });
+
     setCount((num) => num + 1);
+  };
+
+  const goBack = () => {
+    navigate("/");
   };
 
   return (
     <QuizWrapper isError={error}>
-      {/* {error && <QuizPopUp />} */}
+      {error && <QuizPopUp />}
       <main>
         {!loading && (
           <>
@@ -137,6 +149,15 @@ const Quiz: FC = () => {
             ))}
         </Buttons>
       </main>
+      <GoBack
+        onClick={goBack}
+        leftIcon={<ArrowBackIcon />}
+        colorScheme="red"
+        variant="outline"
+      >
+        Go Back
+      </GoBack>
+      <Toaster position="top-center" reverseOrder={false} />
     </QuizWrapper>
   );
 };
