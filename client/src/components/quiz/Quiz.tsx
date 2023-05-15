@@ -12,6 +12,7 @@ import { RxQuestionMarkCircled } from "react-icons/rx";
 import Rate from "./Rate";
 import QuizPopUp from "./QuizPopUp";
 import { useGetQuiz } from "../../hooks/useGetQuiz";
+import { useQuiz } from "../../hooks/useQuiz";
 import { changeAnswersPosition } from "../../utils/changeAnswersPosition";
 import { DIFFICULTY, GAME_RULES } from "../../CONSTANTS";
 
@@ -24,6 +25,7 @@ const Quiz: FC = () => {
   const [buttons, setButtons] = useState<string[] | []>([]);
 
   const { getQuiz, loading } = useGetQuiz();
+  const { answeringQuiz } = useQuiz();
 
   const fetcData = async () => {
     const data = await getQuiz();
@@ -53,18 +55,19 @@ const Quiz: FC = () => {
     }
   }, [count]);
 
-  const handleClick = (answer: string) => {
+  const handleClick = async (answer: string) => {
     if (count == 10 || answer !== question?.correctAnswer) {
       setError(true);
       return;
     }
 
+    await answeringQuiz(DIFFICULTY[question?.difficulty]);
     setCount((num) => num + 1);
   };
 
   return (
     <QuizWrapper isError={error}>
-      {error && <QuizPopUp />}
+      {/* {error && <QuizPopUp />} */}
       <main>
         {!loading && (
           <>
