@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { BG_COLOR } from "../../CONSTANTS";
+import { BG_COLOR, RESPONSIVE_BREAKPOINTS } from "../../CONSTANTS";
 
 export const NavWrapper = styled.nav`
   width: 100%;
@@ -10,9 +10,52 @@ export const NavWrapper = styled.nav`
   align-items: center;
   background-color: ${BG_COLOR};
   padding-inline: 5em;
+  overflow: hidden;
+
+  div {
+    button {
+      @media only screen and (max-width: ${RESPONSIVE_BREAKPOINTS.medium}) {
+        display: none;
+      }
+    }
+
+    div {
+      display: none;
+
+      svg {
+        width: 50%;
+      }
+
+      @media only screen and (max-width: ${RESPONSIVE_BREAKPOINTS.medium}) {
+        width: 100px;
+        display: flex !important;
+        justify-content: flex-end;
+      }
+    }
+  }
+
+  @media only screen and (max-width: ${RESPONSIVE_BREAKPOINTS.medium}) {
+    width: 85%;
+    padding: 0;
+    margin: auto;
+  }
+
+  button {
+    @media only screen and (max-width: ${RESPONSIVE_BREAKPOINTS.medium}) {
+    }
+  }
 
   img {
     width: 10%;
     cursor: pointer;
+    z-index: 30;
+
+    @media only screen and (max-width: ${RESPONSIVE_BREAKPOINTS.large}) {
+      width: 23%;
+    }
+
+    @media only screen and (max-width: ${RESPONSIVE_BREAKPOINTS.small}) {
+      width: 30%;
+    }
   }
 `;

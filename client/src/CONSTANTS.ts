@@ -10,3 +10,13 @@ export const GAME_RULES =
 export const LOSE =
   "Oops Wrong Answer! Would you like to restart and try again? 🫥";
 export const GO_BACK = "Go back 🚀";
+export const giftStars = 1;
+export const BurgerMenuStrokes = "red";
+
+export const RESPONSIVE_BREAKPOINTS = {
+  extra_large: "1600px",
+  largest: "1280px",
+  large: "1024px",
+  medium: "768px",
+  small: "640px",
+};

@@ -1,4 +1,5 @@
-import { FC, useState, useEffect } from "react";
+import { FC, useState, useEffect, MouseEvent, useRef } from "react";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@chakra-ui/react";
 
@@ -10,7 +11,8 @@ import { LeaderBoardWrapper } from "./LeaderBoard.style";
 const DashBoard: FC = () => {
   const [users, setUsers] = useState<IUserData[]>([]);
 
-  const { getUsersData, loading } = useGetUsersData();
+  const { getUsersData } = useGetUsersData();
+  const [animationParent] = useAutoAnimate();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -33,8 +35,10 @@ const DashBoard: FC = () => {
         </div>
         <div id="leaderboard">
           <div className="ribbon"></div>
-          <table>
-            {users?.map(({ id, name, score }: IUserData, idx) => {
+          <table ref={animationParent}>
+            {users?.map((data: IUserData, idx) => {
+              const { id, name, score } = data;
+
               if (idx > 4) {
                 return;
               }

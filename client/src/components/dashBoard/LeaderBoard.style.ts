@@ -70,6 +70,7 @@ export const LeaderBoardWrapper = styled.div`
   }
 
   tr {
+    background-color: transparent !important;
     transition: all 0.2s ease-in-out;
     border-radius: 0.2rem;
     cursor: pointer;

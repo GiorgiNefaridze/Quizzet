@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import { Stack, Text, InputRightElement } from "@chakra-ui/react";
 
-import { BG_COLOR } from "../../CONSTANTS";
+import { BG_COLOR, RESPONSIVE_BREAKPOINTS } from "../../CONSTANTS";
 
 export const FormWrapper = styled.div`
   width: 100%;
@@ -11,8 +12,16 @@ export const FormWrapper = styled.div`
   background-color: ${BG_COLOR};
   gap: 0 5%;
 
+  @media only screen and (max-width: ${RESPONSIVE_BREAKPOINTS.extra_large}) {
+    justify-content: space-evenly;
+  }
+
   img {
     width: 30%;
+
+    @media only screen and (max-width: ${RESPONSIVE_BREAKPOINTS.medium}) {
+      display: none;
+    }
   }
 
   form {
@@ -23,6 +32,14 @@ export const FormWrapper = styled.div`
     flex-direction: column;
     gap: 30px 0;
     font-family: "Roboto", sans-serif;
+
+    @media only screen and (max-width: ${RESPONSIVE_BREAKPOINTS.largest}) {
+      width: 45%;
+    }
+
+    @media only screen and (max-width: ${RESPONSIVE_BREAKPOINTS.medium}) {
+      width: 85%;
+    }
 
     h2 {
       font-size: 2rem;
@@ -48,5 +65,30 @@ export const FormWrapper = styled.div`
     div {
       width: 100%;
     }
+  }
+`;
+
+export const FormButton = styled(Stack)`
+  width: 100%;
+
+  @media only screen and (max-width: ${RESPONSIVE_BREAKPOINTS.medium}) {
+    width: auto !important;
+  }
+`;
+
+export const FormText = styled(Text)`
+  width: 100%;
+
+  @media only screen and (max-width: ${RESPONSIVE_BREAKPOINTS.medium}) {
+    margin: auto;
+    width: auto !important;
+  }
+`;
+
+export const PasswordInpt = styled(InputRightElement)`
+  width: 20% !important;
+
+  @media only screen and (max-width: ${RESPONSIVE_BREAKPOINTS.medium}) {
+    right: 2% !important;
   }
 `;

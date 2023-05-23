@@ -9,7 +9,7 @@ import { REQUIRED_VALIDATION } from "../../CONSTANTS";
 import { IForm } from "./Types";
 
 import RegisterSvg from "../../../public/register.svg";
-import { FormWrapper } from "../signIn/SignIn.style";
+import { FormButton, FormText, FormWrapper } from "../signIn/SignIn.style";
 
 const Register: FC = () => {
   const { registerFn } = useRegister();
@@ -68,13 +68,13 @@ const Register: FC = () => {
           />
           {errors?.password?.message && <h3>{errors?.password?.message}</h3>}
         </Stack>
-        <Text>
+        <FormText>
           Already have an account?
           <Link color="red" onClick={handleClick}>
             Sign in...
           </Link>
-        </Text>
-        <Stack direction="row" spacing={4}>
+        </FormText>
+        <FormButton direction="row" spacing={4}>
           <Button
             isLoading={false}
             loadingText="Submitting"
@@ -84,7 +84,7 @@ const Register: FC = () => {
           >
             Register
           </Button>
-        </Stack>
+        </FormButton>
       </form>
       <Toaster />
     </FormWrapper>

@@ -11,7 +11,7 @@ import { AuthContext } from "../../context/AuthContext";
 import { useSignIn } from "../../hooks/useSignIn";
 
 import SignInSvg from "../../../public/sign_in.svg";
-import { FormWrapper } from "./SignIn.style";
+import { FormButton, FormText, FormWrapper } from "./SignIn.style";
 
 const SignIn: FC = () => {
   const { signIn } = useSignIn();
@@ -78,13 +78,13 @@ const SignIn: FC = () => {
           />
           {errors?.password?.message && <h3>{errors?.password?.message}</h3>}
         </Stack>
-        <Text>
+        <FormText>
           Don't have an account?
           <Link color="red" onClick={handleClick}>
             Register here...
           </Link>
-        </Text>
-        <Stack direction="row" spacing={4}>
+        </FormText>
+        <FormButton direction="row" spacing={4}>
           <Button
             isLoading={false}
             loadingText="Submitting"
@@ -94,7 +94,7 @@ const SignIn: FC = () => {
           >
             Sign in
           </Button>
-        </Stack>
+        </FormButton>
       </form>
       <Toaster />
     </FormWrapper>
