@@ -31,7 +31,7 @@ export const SignInController: IControllerProps = async (req, res) => {
     }
 
     res.status(200).json({ response: token });
-  } catch (error) {
+  } catch (error:any) {
     res.status(500).json({ error: error?.message });
   }
 };

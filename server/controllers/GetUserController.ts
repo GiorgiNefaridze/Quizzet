@@ -8,7 +8,7 @@ dotenv.config();
 
 export const GetUserController: IControllerProps = async (req, res) => {
   try {
-    const header = req.headers["authorization"];
+    const header = req.headers["authorization"] as string;
 
     const id = verifyToken(header);
 
@@ -22,7 +22,7 @@ export const GetUserController: IControllerProps = async (req, res) => {
     }
 
     res.status(200).json({ response: user.rows[0] });
-  } catch (error) {
+  } catch (error: any) {
     res.status(500).json({ error: error?.message });
   }
 };

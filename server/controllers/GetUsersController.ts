@@ -16,7 +16,7 @@ export const GetUsersController: IControllerProps = async (req, res) => {
     }
 
     res.status(200).json({ response: users?.rows });
-  } catch (error) {
+  } catch (error: any) {
     res.status(500).json({ error: error?.message });
   }
 };

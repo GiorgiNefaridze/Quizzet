@@ -1,5 +1,5 @@
-import { verify } from "jsonwebtoken";
 import dotenv from "dotenv";
+import { JwtPayload, verify } from "jsonwebtoken";
 
 dotenv.config();
 
@@ -8,8 +8,10 @@ export const verifyToken = (header: string) => {
     return;
   }
 
+  const secret = process.env.JWT_SECRET as string;
+
   const plainToken = header.slice(7);
-  const data = verify(plainToken, process.env.JWT_SECRET);
-  
-  return data?.id;
+  const data = verify(plainToken, secret) as JwtPayload;
+
+  return data.id as string;
 };
