@@ -13,6 +13,12 @@ export const NavWrapper = styled.nav`
   overflow: hidden;
 
   div {
+    button[aria-details="sign-out"] {
+      @media only screen and (max-width: ${RESPONSIVE_BREAKPOINTS.medium}) {
+        display: block;
+      }
+    }
+
     button {
       @media only screen and (max-width: ${RESPONSIVE_BREAKPOINTS.medium}) {
         display: none;

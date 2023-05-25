@@ -1,12 +1,6 @@
 import { FC, useState, Dispatch, SetStateAction } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  ButtonGroup,
-  Button,
-  Stack,
-  Avatar,
-  AvatarBadge,
-} from "@chakra-ui/react";
+import { ButtonGroup, Button } from "@chakra-ui/react";
 
 import BurgerMenu from "../burgerMenu/BurgerMenu";
 import Menu from "../burgerMenu/Menu";
@@ -45,13 +39,6 @@ const Nav: FC = () => {
 
       {isAuth?.status && (
         <ButtonGroup variant="outline" spacing="6">
-          <Stack direction="row">
-            <Avatar
-              style={{ width: "2.1em", height: "2.1em", cursor: "pointer" }}
-            >
-              <AvatarBadge boxSize="1.20em" bg="green.500" />
-            </Avatar>
-          </Stack>
           <NavButton content="Sign out" />
         </ButtonGroup>
       )}
@@ -76,7 +63,11 @@ export const NavButton = ({ content, setActive }: IProps) => {
   };
 
   return (
-    <Button colorScheme="red" onClick={handleClick}>
+    <Button
+      aria-details={content == "Sign out" ? "sign-out" : ""}
+      colorScheme="red"
+      onClick={handleClick}
+    >
       {content}
     </Button>
   );

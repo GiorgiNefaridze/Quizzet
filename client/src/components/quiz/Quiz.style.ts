@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { Button } from "@chakra-ui/react";
 
+import { RESPONSIVE_BREAKPOINTS } from "../../CONSTANTS";
+
 interface IProps {
   isError: boolean;
 }
@@ -13,9 +15,13 @@ export const QuizWrapper = styled.div<IProps | HTMLElement>`
   justify-content: center;
   position: relative;
 
+  @media only screen and (max-width: ${RESPONSIVE_BREAKPOINTS.medium}) {
+    align-items: flex-start;
+  }
+
   main {
     width: 45%;
-    height: 60%;
+    height: auto;
     border-radius: 20px;
     border: 1px solid #e1e1e1;
     display: flex;
@@ -35,6 +41,23 @@ export const QuizWrapper = styled.div<IProps | HTMLElement>`
       position: absolute;
       right: 5%;
       top: 5%;
+    }
+
+    @media only screen and (max-width: ${RESPONSIVE_BREAKPOINTS.medium}) {
+      width: 100%;
+      border: none;
+      padding: 4rem 2rem;
+      gap: 10px 0;
+    }
+
+    button {
+      width: 100%;
+      border: 1px solid red;
+      border-radius: 10px;
+
+      &:hover {
+        background-color: #fff5f5;
+      }
     }
   }
 `;

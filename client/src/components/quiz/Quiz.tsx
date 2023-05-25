@@ -138,14 +138,14 @@ const Quiz: FC = () => {
             ))}
           {!loading &&
             buttons?.map((content: string, idx: number) => (
-              <Button
+              <button
                 key={idx}
                 colorScheme="red"
                 variant="outline"
                 onClick={() => handleClick(content)}
               >
                 {content}
-              </Button>
+              </button>
             ))}
         </Buttons>
       </main>

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { RESPONSIVE_BREAKPOINTS } from "../../CONSTANTS";
 
 export const LeaderBoardWrapper = styled.div`
   width: 50%;
@@ -8,6 +9,14 @@ export const LeaderBoardWrapper = styled.div`
   justify-content: center;
   align-items: center;
   gap: 30px 0;
+
+  @media only screen and (max-width: ${RESPONSIVE_BREAKPOINTS.medium}) {
+    width: 90%;
+  }
+
+  @media only screen and (max-width: ${RESPONSIVE_BREAKPOINTS.small}) {
+    width: 95%;
+  }
 
   main {
     width: 60%;
@@ -19,6 +28,10 @@ export const LeaderBoardWrapper = styled.div`
     flex-direction: column;
     align-items: center;
     border-radius: 0.5rem;
+
+    @media only screen and (max-width: ${RESPONSIVE_BREAKPOINTS.medium}) {
+      width: 100%;
+    }
   }
 
   #header {
