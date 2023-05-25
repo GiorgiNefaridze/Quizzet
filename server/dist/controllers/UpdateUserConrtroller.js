@@ -9,10 +9,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UpdateUserConrtroller = void 0;
+exports.UpdateUserController = void 0;
 const VerifyToken_1 = require("../utils/VerifyToken");
 const DbConnection_1 = require("../db/DbConnection");
-const UpdateUserConrtroller = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const UpdateUserController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _a, _b;
     try {
         const { score } = req.body;
@@ -26,4 +26,4 @@ const UpdateUserConrtroller = (req, res) => __awaiter(void 0, void 0, void 0, fu
         res.status(500).json({ error: error === null || error === void 0 ? void 0 : error.message });
     }
 });
-exports.UpdateUserConrtroller = UpdateUserConrtroller;
+exports.UpdateUserController = UpdateUserController;

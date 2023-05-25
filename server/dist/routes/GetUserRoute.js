@@ -7,5 +7,5 @@ const UpdateUserConrtroller_1 = require("../controllers/UpdateUserConrtroller");
 const router = (0, express_1.Router)();
 router.get("/", GetUserController_1.GetUserController);
 router.get("/users", GetUsersController_1.GetUsersController);
-router.post("/", UpdateUserConrtroller_1.UpdateUserConrtroller);
+router.post("/", UpdateUserConrtroller_1.UpdateUserController);
 exports.default = router;

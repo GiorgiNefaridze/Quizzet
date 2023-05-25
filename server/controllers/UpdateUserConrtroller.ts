@@ -2,7 +2,7 @@ import { verifyToken } from "../utils/VerifyToken";
 import { pool } from "../db/DbConnection";
 import { IControllerProps } from "./Types";
 
-export const UpdateUserConrtroller: IControllerProps = async (req, res) => {
+export const UpdateUserController: IControllerProps = async (req, res) => {
   try {
     const { score } = req.body;
     const header = req.headers["authorization"];
