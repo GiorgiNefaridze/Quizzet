@@ -1,12 +1,11 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "type": "commonjs",
+  "type": "module",
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "start": "nodemon dist/index.js",
-    "build": "tsc --watch"
+    "start": "nodemon index.js"
   },
   "keywords": [],
   "author": "",

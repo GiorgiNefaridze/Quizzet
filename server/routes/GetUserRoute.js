@@ -4,7 +4,7 @@ import { GetUserController } from "../controllers/GetUserController";
 import { GetUsersController } from "../controllers/GetUsersController";
 import { UpdateUserController } from "../controllers/UpdateUserConrtroller";
 
-const router = Router() as Router;
+const router = Router();
 
 router.get("/", GetUserController);
 

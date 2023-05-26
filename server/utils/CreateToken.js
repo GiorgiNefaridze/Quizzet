@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-export const createToken = (data: { id: string }) => {
+export const createToken = (data) => {
   const secret = process.env.JWT_SECRET;
 
   if (secret) {

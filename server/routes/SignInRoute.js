@@ -2,7 +2,7 @@ import { Router } from "express";
 
 import { SignInController } from "../controllers/SignInController";
 
-const router = Router() as Router;
+const router = Router();
 
 router.post("/signin", SignInController);
 
