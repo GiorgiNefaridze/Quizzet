@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import { RegisterController } from "../controllers/RegisterController";
+import { RegisterController } from "../controllers/RegisterController.js";
 
 const router = Router();
 

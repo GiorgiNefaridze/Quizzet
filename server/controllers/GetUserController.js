@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
 
-import { pool } from "../db/DbConnection";
-import { verifyToken } from "../utils/VerifyToken";
+import { pool } from "../db/DbConnection.js";
+import { verifyToken } from "../utils/VerifyToken.js";
 
 dotenv.config();
 

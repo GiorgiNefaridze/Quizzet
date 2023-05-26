@@ -1,5 +1,5 @@
-import { MakehashedPsw } from "../utils/MakehashedPsw";
-import { pool } from "../db/DbConnection";
+import { MakehashedPsw } from "../utils/MakehashedPsw.js";
+import { pool } from "../db/DbConnection.js";
 
 export const RegisterController = async (req, res) => {
   try {

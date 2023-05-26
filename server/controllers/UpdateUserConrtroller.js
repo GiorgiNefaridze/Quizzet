@@ -1,5 +1,5 @@
-import { verifyToken } from "../utils/VerifyToken";
-import { pool } from "../db/DbConnection";
+import { verifyToken } from "../utils/VerifyToken.js";
+import { pool } from "../db/DbConnection.js";
 
 export const UpdateUserController = async (req, res) => {
   try {

@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 
-import { pool } from "../db/DbConnection";
+import { pool } from "../db/DbConnection.js";
 
 dotenv.config();
 

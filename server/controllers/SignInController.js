@@ -1,6 +1,6 @@
-import { pool } from "../db/DbConnection";
-import { makePlainPsw } from "../utils/MakePlainPsw";
-import { createToken } from "../utils/CreateToken";
+import { pool } from "../db/DbConnection.js";
+import { makePlainPsw } from "../utils/MakePlainPsw.js";
+import { createToken } from "../utils/CreateToken.js";
 
 export const SignInController = async (req, res) => {
   try {

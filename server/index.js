@@ -2,9 +2,9 @@ import express, { json } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 
-import RegisterRoute from "./routes/RegisterRoute";
-import SignInRoute from "./routes/SignInRoute";
-import GetUserRoute from "./routes/GetUserRoute";
+import RegisterRoute from "./routes/RegisterRoute.js";
+import SignInRoute from "./routes/SignInRoute.js";
+import GetUserRoute from "./routes/GetUserRoute.js";
 
 dotenv.config();
 
