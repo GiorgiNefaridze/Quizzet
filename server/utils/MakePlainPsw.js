@@ -1,10 +1,6 @@
 import { compare } from "bcrypt";
 
-interface IProps {
-  (plainPsw: string, hashPsw: string): Promise<boolean>;
-}
-
-export const makePlainPsw: IProps = async (plainPsw, hashPsw) => {
+export const makePlainPsw = async (plainPsw, hashPsw) => {
   if (!hashPsw?.length) {
     return false;
   }
